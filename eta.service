@@ -1,0 +1,19 @@
+[Unit]
+Description=ETA Heizungs-MQTT-Bridge
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=eta
+Group=eta
+WorkingDirectory=/opt/eta
+EnvironmentFile=/etc/eta-mqtt.env
+ExecStart=/opt/eta/eta_v3.9.2 ${TTY_DEV}
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
